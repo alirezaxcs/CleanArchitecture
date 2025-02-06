@@ -99,9 +99,33 @@ dotnet sln CleanArchitecture.sln add src/CleanArchitecture.Domain/CleanArchitect
 dotnet sln CleanArchitecture.sln add src/CleanArchitecture.Infrastructure/CleanArchitecture.Infrastructure.csproj
 
 dotnet sln CleanArchitecture.sln add test/CleanArchitecture.Domain.Tests/CleanArchitecture.Domain.Tests.csproj
+
 dotnet sln CleanArchitecture.sln add test/CleanArchitecture.Application.Tests/CleanArchitecture.Application.Tests.csproj
 
 # End script
 echo "Solution structure created successfully."
 
+```
+
+## add References 
+```bash
+# Add project references for CleanArchitecture.Api
+dotnet add src/CleanArchitecture.Api/CleanArchitecture.Api.csproj reference src/CleanArchitecture.Contracts/CleanArchitecture.Contracts.csproj
+dotnet add src/CleanArchitecture.Api/CleanArchitecture.Api.csproj reference src/CleanArchitecture.Application/CleanArchitecture.Application.csproj
+
+# Add project references for CleanArchitecture.Domain
+dotnet add src/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj reference src/CleanArchitecture.Shared/CleanArchitecture.Shared.csproj
+
+# Add project references for CleanArchitecture.Application
+dotnet add src/CleanArchitecture.Application/CleanArchitecture.Application.csproj reference src/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj
+
+# Add project references for CleanArchitecture.Infrastructure
+dotnet add src/CleanArchitecture.Infrastructure/CleanArchitecture.Infrastructure.csproj reference src/CleanArchitecture.Application/CleanArchitecture.Application.csproj
+
+# Add project references for test projects
+# CleanArchitecture.Domain.Tests references CleanArchitecture.Domain
+dotnet add test/CleanArchitecture.Domain.Tests/CleanArchitecture.Domain.Tests.csproj reference src/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj
+
+# CleanArchitecture.Application.Tests references CleanArchitecture.Application
+dotnet add test/CleanArchitecture.Application.Tests/CleanArchitecture.Application.Tests.csproj reference src/CleanArchitecture.Application/CleanArchitecture.Application.csproj
 ```
